@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <string.h>
-
+#include "escolha.c"
 
 void login()
 {
@@ -17,7 +17,6 @@ void login()
     fflush(stdin);
     printf("\nDigite sua senha (apenas numeros): \n");
     scanf("%d", &comparSenha);
-   
 
     system("cls");
     
@@ -29,8 +28,6 @@ void login()
 	
 	typedef struct cadastroCliente clienteCadastrado;
   	clienteCadastrado  c[100];
-    
-	
 
 	int id_usuario ,senha_usuario;
     char nome_usuario[30];
@@ -49,12 +46,7 @@ void login()
      
 	 }
    }
-
-	  
-	  
-	  
-	  
-	  
+  
 	struct cadastroBarbeiro{
 	char nome[30];
 	int idFuncionario;
@@ -65,8 +57,6 @@ void login()
 	
 	typedef struct cadastroBarbeiro funcionarioCadastrado;
   	funcionarioCadastrado  f[100];
-    
-	
 
 	int id_funcionario ,senha_funcionario;
 	int Inicio;
@@ -89,19 +79,20 @@ void login()
      
 	 }
    }
-   
-	  
 	  
 int i=0, j=0;
-	int pessoaCertaCliente =0;
-	int pessoaCertaFun =0;
+	int pessoaCertaCliente = 0;
+	int pessoaCertaFun = 0;
+
 for(i=0;i<100;i++){
 
 	if(c[i].idCliente == comparCod && c[i].senhaCliente == comparSenha){
 		printf("------ Bem Vindo! %s ------", c[i].nome); 
+		pessoaCertaCliente = 0;
+		break;
 	}
 	else{
-		pessoaCertaCliente  = -1;
+		pessoaCertaCliente = 2;
 	}
 }
 
@@ -109,20 +100,31 @@ for(j=0;j<100;j++){
 	
 	if(f[j].idFuncionario == comparCod && f[j].senhaFuncionario == comparSenha){
 		printf("------ Bem Vindo! %s ------", f[j].nome); 
+		pessoaCertaFun = 0;
+		break;
 	}
 	else{
-		pessoaCertaFun  = -1;
+		pessoaCertaFun  = 2;
 	}
 }
 
+if (pessoaCertaCliente == 0 || pessoaCertaFun == 0){
+	
+}
+else {
+	printf("Usuario ou senha invalidos!");
+}
 
-
-if(pessoaCertaCliente == -1){
-	printf("FILHA DA PUTAAAA"); // Por conta do for sempre fazer mais uma repetição sempra vai ser -1 e não consigo colocar uma validação de senha invalida foda
+if (pessoaCertaCliente == 0){
+	escolha();
+}
+else if (pessoaCertaFun == 0){
+	escolha();
 }
 
     fclose(cliente);
     fclose(funcionario);
 
 }
+
 

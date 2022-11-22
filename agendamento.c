@@ -6,15 +6,17 @@
 #include "cadastroEstabelecimento.c"
 #include "cadastroUsuario.c"
 #include "listaBarbeiro.c"
+#include "agendar.c"
 
 
 void menu();
 void escolha();
 
+
 int main()
 {
+	system("color 09");
     menu();
-    escolha();
     return 0;
 }
 
@@ -47,6 +49,7 @@ void menu()
     }
 }
 
+
 void escolha(){
 	int resposta; 
 
@@ -61,11 +64,12 @@ void escolha(){
         listar();
         break;
 
-//    case 2:
-//       cadastroUsuario();
-//       break;
+    case 2:
+       agendar();
+       break;
 
     }
 }
+
 
 

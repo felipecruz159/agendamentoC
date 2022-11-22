@@ -9,10 +9,6 @@
 void listar()
 {
 
-
-    
-	
-
 	int id_funcionario ,senha_funcionario;
 	int Inicio;
 	int Term;
