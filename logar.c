@@ -3,128 +3,135 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
-#include <string.h>
-#include "escolha.c"
+#include "telaBarbeiro.c"
 
 void login()
 {
-	int comparCod,comparSenha;
-	
+	int comparCod, comparSenha;
+
 	printf("\n---- Login ----\n");
-    fflush(stdin);
-    printf("\n\nDigite o codigo do seu cadastro: \n");
-    scanf("%d", &comparCod);
-    fflush(stdin);
-    printf("\nDigite sua senha (apenas numeros): \n");
-    scanf("%d", &comparSenha);
+	fflush(stdin);
+	printf("\n\nDigite o codigo do seu cadastro: \n");
+	scanf("%d", &comparCod);
+	fflush(stdin);
+	printf("\nDigite sua senha (apenas numeros): \n");
+	scanf("%d", &comparSenha);
 
-    system("cls");
-    
-    struct cadastroCliente{
-	char nome[30];
-	int idCliente;
-	int senhaCliente;
+	system("cls");
+
+	struct cadastroCliente
+	{
+		char nome[30];
+		int idCliente;
+		int senhaCliente;
 	};
-	
+
 	typedef struct cadastroCliente clienteCadastrado;
-  	clienteCadastrado  c[100];
+	clienteCadastrado c[100];
 
-	int id_usuario ,senha_usuario;
-    char nome_usuario[30];
-    int contador=0;
+	int id_usuario, senha_usuario;
+	char nome_usuario[30];
+	int contador = 0;
 
-    FILE* cliente = fopen("cadastro-usuario.txt", "r");
-    
-    if (cliente != NULL)
-   {
-     while (fscanf(cliente, "%d %i %[^\n]s", &id_usuario,&senha_usuario, nome_usuario) != EOF){
-     	c[contador].idCliente = id_usuario;
-     	c[contador].senhaCliente = senha_usuario;
-     	strcpy(c[contador].nome, nome_usuario);
+	FILE *cliente = fopen("cadastro-usuario.txt", "r");
 
-     	contador++;
-     
-	 }
-   }
-  
-	struct cadastroBarbeiro{
-	char nome[30];
-	int idFuncionario;
-	int senhaFuncionario;
-	int horaInicio;
-	int horaTerm;
+	if (cliente != NULL)
+	{
+		while (fscanf(cliente, "%d %i %[^\n]s", &id_usuario, &senha_usuario, nome_usuario) != EOF)
+		{
+			c[contador].idCliente = id_usuario;
+			c[contador].senhaCliente = senha_usuario;
+			strcpy(c[contador].nome, nome_usuario);
+
+			contador++;
+		}
+	}
+
+	struct cadastroBarbeiro
+	{
+		char nome[30];
+		int idFuncionario;
+		int senhaFuncionario;
+		int horaInicio;
+		int horaTerm;
 	};
-	
-	typedef struct cadastroBarbeiro funcionarioCadastrado;
-  	funcionarioCadastrado  f[100];
 
-	int id_funcionario ,senha_funcionario;
+	typedef struct cadastroBarbeiro funcionarioCadastrado;
+	funcionarioCadastrado f[100];
+
+	int id_funcionario, senha_funcionario;
 	int Inicio;
 	int Term;
-    char nome_funcionario[30];
-    int cont=0;
+	char nome_funcionario[30];
+	int cont = 0;
 
-    FILE* funcionario = fopen("cadastro-Estabelecimento.txt", "r");
-    
-    if (funcionario != NULL)
-   {
-     while (fscanf(funcionario, "%d %i %i %d %[^\n]s", &id_funcionario,&senha_funcionario, &Inicio, &Term, nome_funcionario) != EOF){
-  		f[cont].idFuncionario = id_funcionario;
-     	f[cont].senhaFuncionario = senha_funcionario;
-     	f[cont].horaInicio = id_funcionario;
-     	f[cont].horaTerm = senha_funcionario;
-     	strcpy(f[cont].nome, nome_funcionario);
+	FILE *funcionario = fopen("cadastro-Estabelecimento.txt", "r");
 
-     	cont++;
-     
-	 }
-   }
-	  
-int i=0, j=0;
+	if (funcionario != NULL)
+	{
+		while (fscanf(funcionario, "%d %i %i %d %[^\n]s", &id_funcionario, &senha_funcionario, &Inicio, &Term, nome_funcionario) != EOF)
+		{
+			f[cont].idFuncionario = id_funcionario;
+			f[cont].senhaFuncionario = senha_funcionario;
+			f[cont].horaInicio = id_funcionario;
+			f[cont].horaTerm = senha_funcionario;
+			strcpy(f[cont].nome, nome_funcionario);
+
+			cont++;
+		}
+	}
+
+	int i = 0, j = 0;
 	int pessoaCertaCliente = 0;
 	int pessoaCertaFun = 0;
 
-for(i=0;i<100;i++){
+	for (i = 0; i < 100; i++)
+	{
 
-	if(c[i].idCliente == comparCod && c[i].senhaCliente == comparSenha){
-		printf("------ Bem Vindo! %s ------", c[i].nome); 
-		pessoaCertaCliente = 0;
-		break;
+		if (c[i].idCliente == comparCod && c[i].senhaCliente == comparSenha)
+		{
+			printf("------ Bem Vindo! %s ------", c[i].nome);
+			pessoaCertaCliente = 0;
+			break;
+		}
+		else
+		{
+			pessoaCertaCliente = 2;
+		}
 	}
-	else{
-		pessoaCertaCliente = 2;
+
+	for (j = 0; j < 100; j++)
+	{
+
+		if (f[j].idFuncionario == comparCod && f[j].senhaFuncionario == comparSenha)
+		{
+			printf("------ Bem Vindo! %s ------", f[j].nome);
+			pessoaCertaFun = 0;
+			break;
+		}
+		else
+		{
+			pessoaCertaFun = 2;
+		}
 	}
-}
 
-for(j=0;j<100;j++){
-	
-	if(f[j].idFuncionario == comparCod && f[j].senhaFuncionario == comparSenha){
-		printf("------ Bem Vindo! %s ------", f[j].nome); 
-		pessoaCertaFun = 0;
-		break;
+	if (pessoaCertaCliente == 0 || pessoaCertaFun == 0)
+	{
 	}
-	else{
-		pessoaCertaFun  = 2;
+	else
+	{
+		printf("Usuario ou senha invalidos!");
 	}
-}
 
-if (pessoaCertaCliente == 0 || pessoaCertaFun == 0){
-	
-}
-else {
-	printf("Usuario ou senha invalidos!");
-}
+	if (pessoaCertaCliente == 0)
+	{
+		escolha();
+	}
+	if (pessoaCertaFun == 0)
+	{
+		telaBarbeiro();
+	}
 
-if (pessoaCertaCliente == 0){
-	escolha();
+	fclose(cliente);
+	fclose(funcionario);
 }
-else if (pessoaCertaFun == 0){
-	escolha();
-}
-
-    fclose(cliente);
-    fclose(funcionario);
-
-}
-
-

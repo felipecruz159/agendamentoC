@@ -5,9 +5,7 @@
 #include <time.h>
 #include <string.h>
 
-
 void telaBarbeiro()
 {
-	printf("\nEsses são os horarios agendados");
+	printf("\nEsses sao os horarios agendados");
 }
-

@@ -6,12 +6,8 @@
 #include "cadastroEstabelecimento.c"
 #include "cadastroUsuario.c"
 #include "listaBarbeiro.c"
-#include "agendar.c"
-
 
 void menu();
-void escolha();
-
 
 int main()
 {
@@ -48,7 +44,6 @@ void menu()
       break;
     }
 }
-
 
 void escolha(){
 	int resposta; 

@@ -22,7 +22,7 @@ void cadastroEstabelecimento()
 
     printf("\n---- Cadastro do salao ----\n");
     fflush(stdin);
-    cadastro[0].codigo = (rand() % 100);        // PROVISORIO
+    cadastro[0].codigo = (rand() % 100);      // PROVISORIO
     printf("Codigo: %d", cadastro[0].codigo); // FIXME: LER CODIGO MAIS RECENTE DO ARQUIVO (BD)
     fflush(stdin);
     printf("\n\nDigite sua senha (apenas numeros): \n");
@@ -55,28 +55,24 @@ void cadastroEstabelecimento()
 
     FILE *estabelecimento;
     estabelecimento = fopen("cadastro-estabelecimento.txt", "at");
-//    estabelecimento = fopen("cadastro-estabelecimento.txt", "a");
+    //    estabelecimento = fopen("cadastro-estabelecimento.txt", "a");
 
     if (estabelecimento == NULL)
     {
         printf("Erro ao abrir o arquivo de dados!");
         exit(1);
     }
-	fprintf(estabelecimento, "%d ", cadastro[0].codigo);
-	fprintf(estabelecimento, "%d ", cadastro[0].senha);
-	fprintf(estabelecimento, "%d ", horaInicio);
+    fprintf(estabelecimento, "%d ", cadastro[0].codigo);
+    fprintf(estabelecimento, "%d ", cadastro[0].senha);
+    fprintf(estabelecimento, "%d ", horaInicio);
     fprintf(estabelecimento, "%d ", horaTermino);
     fprintf(estabelecimento, "%s ", cadastro[0].nome);
     fprintf(estabelecimento, "%s\n ", cadastro[0].marca);
 
-
-	printf("Cadastrado com sucesso!");
+    printf("Cadastrado com sucesso!");
+    menu();
 
     fclose(estabelecimento);
 
     // TODO: COMECAR LOGICA DE HORAS DISPONIVEIS
 }
-
-
-
-
